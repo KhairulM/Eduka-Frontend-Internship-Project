@@ -1,0 +1,39 @@
+{
+    "answer": [
+        1,
+        2,
+        3
+    ],
+    "exam": [
+        {
+            "question": "Siapa nama bapak kamu?",
+            "choices": [
+                "Tidak tahu",
+                "Si A",
+                "Si B",
+                "Si C",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Siapa nama ibu kamu?",
+            "choices": [
+                "Tidak tahu",
+                "Si A",
+                "Si B",
+                "Si C",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Kamu siapa?",
+            "choices": [
+                "Tidak tahu",
+                "Si A",
+                "Si B",
+                "Si C",
+                "None of the above"
+            ]
+        }
+    ]
+}
