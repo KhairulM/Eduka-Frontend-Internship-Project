@@ -1,6 +1,13 @@
 <template>
   <div class="home">
-    <div id="top-bar">
+    <div class="grid-container">
+      <div id="q-and-a" class="grid-item"></div>
+      <div id="time-left" class="grid-item"></div>
+      <div id="summary" class="grid-item"></div>
+    </div>
+
+
+    <!-- <div id="top-bar">
       <button class="primary-button">
         <font-awesome-icon icon="chevron-left" style="margin-right: 10px;"></font-awesome-icon>
         <h4>Prev</h4>
@@ -30,9 +37,8 @@
         </button>
       </div>
       <div id="summary-box" class="box">
-
-      </div>
-    </div>
+      </div> 
+    </div> -->
   </div>
 </template>
 
@@ -50,7 +56,35 @@ export default {
   min-width: 600px;
 }
 
-hr {
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: white;
+}
+
+#q-and-a {
+  grid-column: 1 / 4;
+  grid-row: auto;
+}
+
+#time-left {
+  grid-column: 4 / 6;
+  grid-row: 1;
+}
+
+#summary {
+  grid-column: 4 / 6;
+  grid-row: auto;
+}
+
+/* hr {
   border: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -122,5 +156,5 @@ button {
   background-color: #7766ec;
   border-radius: 100px;
   color: white;
-}
+} */
 </style>
