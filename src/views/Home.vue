@@ -1,59 +1,176 @@
 <template>
   <div class="home">
     <div class="grid-container">
-      <div id="q-and-a" class="grid-item"></div>
+      <!-- Questions and answers section-->
+      <div id="q-and-a" class="grid-item">
+        <!-- Topbar section that houses the exam title and navigation buttons -->
+        <section id="qa-topbar">
+          <h3 class="font-color-shade">{{ examTitle }}</h3>
+          <div id="q-nav">
+            <button class="q-nav-btn" @click="prevQuestion">
+              <font-awesome-icon icon="chevron-left" style="color: #f09d34;"></font-awesome-icon>
+            </button>
+            <p>{{ currQuestionNum }}</p>
+            <button class="q-nav-btn" @click="nextQuestion">
+              <font-awesome-icon icon="chevron-right" style="color: #f09d34;"></font-awesome-icon>
+            </button>
+          </div>        
+        </section>
+
+        <!-- Question section -->
+        <section id="question-section" class="grid-item">
+          <p class="font-color-shade font-sm">{{ questions[currQuestionNum-1] }}</p>
+        </section>
+
+        <!-- Aswers choice section -->
+        <section id="answer-section">
+          <div v-for="choice in answers[currQuestionNum-1]" :key="choice.key" ref="choice" class="choice">
+            <button class="choice-button" v-on:click="answerClick(choice.key)">{{ choice.key }}</button>
+            <p class="font-sm font-color-shade">{{ choice.answer }}</p>
+          </div>
+        </section>
+
+        <!-- Footer section that houses the question navigation buttons -->
+        <section id="qa-footer">
+          <div id="q-nav">
+            <button class="q-nav-btn" @click="prevQuestion">
+              <font-awesome-icon icon="chevron-left" style="color: #f09d34;"></font-awesome-icon>
+            </button>
+            <p>{{ currQuestionNum }}</p>
+            <button class="q-nav-btn" @click="nextQuestion">
+              <font-awesome-icon icon="chevron-right" style="color: #f09d34;"></font-awesome-icon>
+            </button>
+          </div>   
+        </section>
+      </div>
+
+      <!-- Time section, show how much time left the user has -->
       <div id="time-left" class="grid-item"></div>
+
+      <!-- Summary section, show how many answered and unaswered question -->
       <div id="summary" class="grid-item"></div>
     </div>
-
-
-    <!-- <div id="top-bar">
-      <button class="primary-button">
-        <font-awesome-icon icon="chevron-left" style="margin-right: 10px;"></font-awesome-icon>
-        <h4>Prev</h4>
-      </button>
-      <h2>Simulasi Ujian UTBK</h2>
-      <button class="primary-button">
-        <h4>Next</h4>
-        <font-awesome-icon icon="chevron-right" style="margin-left: 10px;"></font-awesome-icon>
-      </button>
-    </div>
-    <hr>
-
-    <div id="main-content">
-      <div id="question-box" class="box">
-        <p>hello</p>
-      </div>
-      <div id="choice-box" class="box">
-
-      </div>
-      <div id="control">
-        <div id="time-left">
-          <h2>30:00</h2>
-        </div>
-        <button class="secondary-button">
-          <h4>Submit</h4>
-          <font-awesome-icon icon="arrow-circle-right" style="margin-left: 10px;"></font-awesome-icon>
-        </button>
-      </div>
-      <div id="summary-box" class="box">
-      </div> 
-    </div> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      examTitle: "TPS - Penalaran Umum",
+      currQuestionNum: 1,
+      questions: [
+        "Siapa nama kamu?", 
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa."
+      ],
+      answers: [
+        [
+          {key: "A", answer: "Si A"},
+          {key: "B", answer: "Si B"},
+          {key: "C", answer: "Si C"},
+          {key: "D", answer: "Si D"},
+          {key: "E", answer: "Si E"},
+        ],
+        [
+          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+        ]
+      ],
+      pickedAnswers: []
+    }
+  },
+  methods: {
+    answerClick: function (key) {
+      // create a mapping to be used when selecting ref element
+      var choiceKeyIdxMap = {}
+      this.answers[this.currQuestionNum-1].forEach((choice, idx) => {
+          choiceKeyIdxMap[choice.key] = idx
+      })
+
+      // change selected button apperance and pickedAnswer
+      var button = this.$refs.choice[choiceKeyIdxMap[key]].children[0]
+      
+      if (button.classList.contains('choice-button-clicked')) {
+        button.classList.remove('choice-button-clicked')
+        this.pickedAnswers[this.currQuestionNum-1] = null
+      } else {
+
+        // remove any choice-button-clicked class from other button
+        this.$refs.choice.forEach((el) => {
+          el.children[0].classList.remove('choice-button-clicked')
+        })
+
+        // add the class to the button
+        button.classList.add('choice-button-clicked')
+        this.pickedAnswers[this.currQuestionNum-1] = key
+      }      
+    },
+    prevQuestion: function() {
+      if (this.currQuestionNum > 1){
+
+        // remove any choice-button-clicked class from all button
+        this.$refs.choice.forEach((el) => {
+          el.children[0].classList.remove('choice-button-clicked')
+        })
+
+        this.currQuestionNum--
+      }
+    },
+    nextQuestion: function() {
+      if (this.currQuestionNum < this.questions.length) {
+
+        // remove any choice-button-clicked class from all button
+        this.$refs.choice.forEach((el) => {
+          el.children[0].classList.remove('choice-button-clicked')
+        })
+
+        this.currQuestionNum++
+      }
+    }
+  },
+  updated: function() {
+    this.$nextTick(function() {
+      if (this.pickedAnswers[this.currQuestionNum-1] != null) {
+        // storing key
+        var key = this.pickedAnswers[this.currQuestionNum-1]
+        
+        // create a mapping to be used when selecting ref element
+        var choiceKeyIdxMap = {}
+        this.answers[this.currQuestionNum-1].forEach((choice, idx) => {
+            choiceKeyIdxMap[choice.key] = idx
+        })
+        
+        // change selected button apperance and pickedAnswer
+        var button = this.$refs.choice[choiceKeyIdxMap[key]].children[0]
+        button.classList.add('choice-button-clicked')
+      }
+    })
+  }
 };
 </script>
 
 <style scoped>
+button {
+  border: none;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+button:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);
+}
+
 .home {
-  margin: 0;
-  padding: 5% 10%;
-  max-width: 700px;
-  min-width: 600px;
+  margin: 30px auto;
+  width: 800px;
 }
 
 .grid-container {
@@ -67,11 +184,50 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: white;
+  padding: 20px;
+}
+
+.q-nav-btn {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 100%;
+  padding: 10px 12px;
+}
+
+.font-color-shade{
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.font-sm {
+  font-size: 0.9rem;
+}
+
+.choice {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.choice:last-child {
+  margin-bottom: 0;
+}
+
+.choice-button {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 3px 6px;
+  margin-right: 10px;
+}
+
+.choice-button-clicked {
+  background-color: #f09d34;
+  color: white;
 }
 
 #q-and-a {
   grid-column: 1 / 4;
-  grid-row: auto;
+  grid-row: 1 / 4;
 }
 
 #time-left {
@@ -84,77 +240,36 @@ export default {
   grid-row: auto;
 }
 
-/* hr {
-  border: 0.5px solid rgba(0, 0, 0, 0.1);
-}
-
-button {
-  border: none;
-  text-align: center;
-  padding: 10px 15px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-#top-bar {
-  display:flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
+#q-and-a section {
   margin-bottom: 20px;
 }
 
-#main-content{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 20px;
-  grid-auto-rows: minmax(50px, auto);
-  margin-top: 20px;
+#q-and-a section:last-child {
+  margin-bottom: 0;
 }
 
-#question-box {
-  grid-column: 1 / 4;
-  grid-row: 1 / auto;
-}
-
-#choice-box {
-  grid-column: 1 / 4;
-  grid-row: auto;
-}
-
-#summary-box {
-  grid-column: 4 / 6;
-  grid-row: 2 / auto;
-}
-
-#control {
-  grid-column: 4 / 6;
-  grid-row: 1;
+#qa-topbar {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
-.box{
-  border: 1px solid #f09d34;
-  border-radius: 6px;
-  padding: 20px;
+#qa-topbar h3 {
+  font-weight: 300;
 }
 
-.primary-button {
-  background-color: #f09d34;
-  border-radius: 7px;
-  color: white;
-    
+#q-nav {
+  display: flex;
+  align-items: center;
 }
 
-.secondary-button{
-  background-color: #7766ec;
-  border-radius: 100px;
-  color: white;
-} */
+#q-nav p{
+  margin: 0 15px;
+}
+
+#qa-footer {
+  float: right;
+}
+
 </style>

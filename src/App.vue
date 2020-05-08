@@ -11,7 +11,6 @@
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
   height: 100vh;
   width: 100vw;
   background-color: whitesmoke;
