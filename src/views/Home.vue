@@ -47,8 +47,14 @@
       <!-- Time section, show how much time left the user has -->
       <div id="time-left" class="grid-item"></div>
 
-      <!-- Summary section, show how many answered and unaswered question -->
-      <div id="summary" class="grid-item"></div>
+      <!-- Summary section, finish button and show how many answered and unaswered question -->
+      <div id="summary" class="grid-item">
+        <button id="finish-button">
+          <h3>Finish</h3>
+          <font-awesome-icon icon="arrow-circle-right" style="color: white;" size="lg"></font-awesome-icon>
+        </button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -272,4 +278,18 @@ button:focus{
   float: right;
 }
 
+#finish-button {
+  background-color: #7766ec;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#finish-button h3 {
+  color: white;
+  margin-right: 10px;
+}
 </style>
