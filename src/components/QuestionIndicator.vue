@@ -124,7 +124,7 @@ export default {
     background-color: #7766ec;
 }
 
-.qi-button-clicked > h4 {
+.qi-button-clicked > h4, .qi-button-answered > h4{
     color: white;
 }
 </style>
