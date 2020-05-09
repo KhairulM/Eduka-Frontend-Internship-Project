@@ -12,7 +12,7 @@
                   </h4>
               </div>
               <h4 class="question-num font-sm font-color-shade font-light">
-                  {{ unit.key++ }}
+                  {{ ++unit.key }}
               </h4>
           </div>
       </div>
