@@ -14,7 +14,7 @@
                 <h4>{{ num }}</h4>
         </button>
     </div>
-    <button id="finish-button">
+    <button id="finish-button" @click="onClickFinish">
         <h3>Finish</h3>
         <font-awesome-icon icon="arrow-circle-right" style="color: white;" size="lg" />
     </button>
@@ -24,7 +24,12 @@
 <script>
 export default {
     name: "QuestionIndicator",
-    props: ['currQuestionNum', 'nbQuestion', 'pickedAnswers', 'changeQuestion'],
+    props: [
+        'currQuestionNum', 
+        'nbQuestion',
+        'pickedAnswers',
+        'changeQuestion',
+        'onClickFinish'],
     computed: {
         answered: function() {          
             return this.pickedAnswers.filter((el) => {
@@ -63,6 +68,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
 }
 
 #finish-button h3 {

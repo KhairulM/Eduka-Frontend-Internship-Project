@@ -7,10 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { 
   faChevronLeft, 
   faChevronRight,
-  faArrowCircleRight} 
+  faArrowCircleRight,
+  faTimes} 
   from '@fortawesome/free-solid-svg-icons'
 
-library.add(faChevronLeft, faChevronRight, faArrowCircleRight)
+library.add(
+  faChevronLeft, 
+  faChevronRight, 
+  faArrowCircleRight,
+  faTimes)
+  
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false;
 

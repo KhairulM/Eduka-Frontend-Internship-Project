@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <div class="grid-container">
+    <div id="grid-container">
       <!-- Questions and answers section-->
       <div id="q-and-a" class="grid-item">
         <!-- Topbar section that houses the exam title and navigation buttons -->
         <section id="qa-topbar">
-          <h3 class="font-color-shade">{{ examTitle }}</h3>
+          <h3 class="font-color-shade font-light">{{ examTitle }}</h3>
           <div id="q-nav">
             <button class="q-nav-btn" @click="prevQuestion">
               <font-awesome-icon icon="chevron-left" style="color: #f09d34;" />
@@ -24,7 +24,11 @@
 
         <!-- Aswers choice section -->
         <section id="answer-section">
-          <div v-for="choice in answers[currQuestionNum-1]" :key="choice.key" ref="choice" class="choice">
+          <div 
+          v-for="choice in answers[currQuestionNum-1]" 
+          :key="choice.key" 
+          ref="choice" 
+          class="choice">
             <button class="choice-button" v-on:click="answerClick(choice.key)">{{ choice.key }}</button>
             <p class="font-sm font-color-shade">{{ choice.answer }}</p>
           </div>
@@ -56,9 +60,17 @@
         :nbQuestion="questions.length" 
         :pickedAnswers="pickedAnswers" 
         :changeQuestion="changeQuestion"
+        :onClickFinish="onClickFinish"
         :key="changeCount"/>
       </div>
+    </div>
 
+    <!-- Review modal, to pop-up when finished button is clicked -->
+    <div id="review-modal" class="grid-item">
+      <ReviewModal 
+      :pickedAnswers="pickedAnswers"
+      :key="changeCount"
+      :onClickClose="onClickCloseReview"/>
     </div>
   </div>
 </template>
@@ -66,9 +78,15 @@
 <script>
 import TimeIndicator from '@/components/TimeIndicator.vue'
 import QuestionIndicator from '@/components/QuestionIndicator.vue'
+import ReviewModal from '@/components/ReviewModal.vue'
 
 export default {
   name: "Home",
+  components: {
+    TimeIndicator,
+    QuestionIndicator,
+    ReviewModal,
+  },
   data() {
     return {
       examTitle: "TPS - Penalaran Umum",
@@ -166,6 +184,7 @@ export default {
       }
     },
     timeLimitExceeded: function() {
+      // function to be called when time limit is reached
       console.log("TLE");
       
     },
@@ -175,6 +194,20 @@ export default {
 
       // force re-renders of QI component
         this.changeCount++
+    },
+    onClickFinish: function() {
+      // show modal
+      document.querySelector("#review-modal").style.visibility = "visible"
+      document.querySelector("#grid-container").style.pointerEvents = "none"
+    },
+    onClickCloseReview: function() {
+      // hides modal
+      document.querySelector("#review-modal").style.visibility = "hidden"
+      document.querySelector("#grid-container").style.pointerEvents = "auto"
+    },
+    onClickSubmit: function() {
+      console.log("ExamSubmitted");
+      
     }
   },
   updated: function() {
@@ -200,9 +233,15 @@ export default {
       }
     })
   },
-  components: {
-    TimeIndicator,
-    QuestionIndicator
+  mounted: function() {
+    // initialize pickedAnswers to n sized null array
+    for (var i = 0; i < this.questions.length; i++) {
+      this.pickedAnswers[i] = null
+    }
+    
+    // propagate changes to components (used for ReviewModal)
+    this.changeCount++
+    
   }
 };
 </script>
@@ -227,9 +266,10 @@ button:focus{
 .home {
   margin: 30px auto;
   width: 800px;
+  position: relative;
 }
 
-.grid-container {
+#grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
@@ -255,6 +295,10 @@ button:focus{
 
 .font-sm {
   font-size: 0.9rem;
+}
+
+.font-light {
+  font-weight: 300;
 }
 
 .choice {
@@ -312,10 +356,6 @@ button:focus{
   align-items: center;
 }
 
-#qa-topbar h3 {
-  font-weight: 300;
-}
-
 #q-nav {
   display: flex;
   align-items: center;
@@ -327,6 +367,15 @@ button:focus{
 
 #qa-footer {
   float: right;
+}
+
+#review-modal {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  left: 25%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 
