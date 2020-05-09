@@ -1,6 +1,6 @@
 <template>
 <div id="container">
-    <h2>Time Left</h2>
+    <h3>Sisa Waktu</h3>
     <div id="timer-container">
         <div class="unit-indicator">
             <h1>{{ minute }}</h1>
@@ -51,7 +51,7 @@ export default {
         }
     },
     mounted: function() {
-        //this.timer()
+        this.timer()
     }
 }
 </script>
@@ -66,6 +66,10 @@ export default {
 
 #container {
     text-align: center;
+}
+
+#container>h3 {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .unit-indicator {
