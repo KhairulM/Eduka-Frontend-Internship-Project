@@ -51,7 +51,12 @@
 
       <!-- Summary section, finish button and show how many answered and unaswered question -->
       <div id="summary" class="grid-item">
-        <QuestionIndicator :currQuestionNum="currQuestionNum" :nbQuestion="15" :pickedAnswers="pickedAnswers"/>
+        <QuestionIndicator 
+        :currQuestionNum="currQuestionNum" 
+        :nbQuestion="questions.length" 
+        :pickedAnswers="pickedAnswers" 
+        :changeQuestion="changeQuestion"
+        :key="changeCount"/>
       </div>
 
     </div>
@@ -71,7 +76,11 @@ export default {
       duration:90*60,
       questions: [
         "Siapa nama kamu?", 
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
       ],
       answers: [
         [
@@ -85,9 +94,30 @@ export default {
           {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
           {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
           {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ]
+        ],
+        [
+          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+        ],
+        [
+          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+        ],
+        [
+          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+        ],
+        [
+          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+        ],
       ],
-      pickedAnswers: []
+      pickedAnswers: [],
+      changeCount: 0
     }
   },
   methods: {
@@ -115,36 +145,45 @@ export default {
         button.classList.add('choice-button-clicked')
         this.pickedAnswers[this.currQuestionNum-1] = key
       }
+
+      // force re-renders of QI component
+      this.changeCount++
     },
     prevQuestion: function() {
       if (this.currQuestionNum > 1){
-
-        // remove any choice-button-clicked class from all button
-        this.$refs.choice.forEach((el) => {
-          el.children[0].classList.remove('choice-button-clicked')
-        })
-
         this.currQuestionNum--
+        
+        // force re-renders of QI component
+        this.changeCount++
       }
     },
     nextQuestion: function() {
       if (this.currQuestionNum < this.questions.length) {
-
-        // remove any choice-button-clicked class from all button
-        this.$refs.choice.forEach((el) => {
-          el.children[0].classList.remove('choice-button-clicked')
-        })
-
         this.currQuestionNum++
+        
+        // force re-renders of QI component
+        this.changeCount++
       }
     },
     timeLimitExceeded: function() {
       console.log("TLE");
       
+    },
+    changeQuestion: function(num) {
+      // on click function for questions indicator
+      this.currQuestionNum = num
+
+      // force re-renders of QI component
+        this.changeCount++
     }
   },
   updated: function() {
     this.$nextTick(function() {
+      // remove any choice-button-clicked class from all button
+      this.$refs.choice.forEach((el) => {
+        el.children[0].classList.remove('choice-button-clicked')
+      })
+
       if (this.pickedAnswers[this.currQuestionNum-1] != null) {
         // storing key
         var key = this.pickedAnswers[this.currQuestionNum-1]

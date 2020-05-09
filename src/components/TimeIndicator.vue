@@ -20,7 +20,7 @@ export default {
     props: ['tleFunc'],
     data() {
         return {
-            duration: 5,
+            duration: 90*60,
             timerIntervalId: null
         }
     },

@@ -8,7 +8,8 @@
         <button 
             class="qi-button" 
             v-for="num in nbQuestion" 
-            :key="num" 
+            :key="num"
+            @click="changeQuestion(num)" 
             ref="qiBtn">
                 <h4>{{ num }}</h4>
         </button>
@@ -23,16 +24,31 @@
 <script>
 export default {
     name: "QuestionIndicator",
-    props: ['currQuestionNum', 'nbQuestion', 'pickedAnswers'],
+    props: ['currQuestionNum', 'nbQuestion', 'pickedAnswers', 'changeQuestion'],
     computed: {
-        answered: function() {
-            console.log(this.pickedAnswers);
-            
+        answered: function() {          
             return this.pickedAnswers.filter((el) => {
-                console.log(el);
                 return el != null
             }).length
         }
+    },
+    mounted: function() {
+        // will be called when attached key prop in parent changes,
+        // so we will change the appearace of each question indicator
+        // buttons here
+        
+        this.$refs.qiBtn.forEach((el, idx) => {
+            if (idx+1 === this.currQuestionNum) {
+                el.classList.add('qi-button-clicked')
+            } else {
+                if (this.pickedAnswers[idx] != null) {
+                    el.classList.add('qi-button-answered')
+                } else {
+                    el.classList.remove('qi-button-answered')
+                }
+                el.classList.remove('qi-button-clicked')
+            }
+        })
     }
 }
 </script>
@@ -96,5 +112,19 @@ export default {
 .qi-button h4 {
     margin: auto;
     color: rgba(0, 0, 0, 0.7);
+}
+
+.qi-button-answered {
+    border: 1px solid #f09d34;
+    background-color: #f09d34;
+}
+
+.qi-button-clicked {
+    border: 1px solid #7766ec;
+    background-color: #7766ec;
+}
+
+.qi-button-clicked > h4 {
+    color: white;
 }
 </style>
