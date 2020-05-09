@@ -8,11 +8,11 @@
           <h3 class="font-color-shade">{{ examTitle }}</h3>
           <div id="q-nav">
             <button class="q-nav-btn" @click="prevQuestion">
-              <font-awesome-icon icon="chevron-left" style="color: #f09d34;"></font-awesome-icon>
+              <font-awesome-icon icon="chevron-left" style="color: #f09d34;" />
             </button>
             <p>{{ currQuestionNum }}</p>
             <button class="q-nav-btn" @click="nextQuestion">
-              <font-awesome-icon icon="chevron-right" style="color: #f09d34;"></font-awesome-icon>
+              <font-awesome-icon icon="chevron-right" style="color: #f09d34;" />
             </button>
           </div>        
         </section>
@@ -34,24 +34,26 @@
         <section id="qa-footer">
           <div id="q-nav">
             <button class="q-nav-btn" @click="prevQuestion">
-              <font-awesome-icon icon="chevron-left" style="color: #f09d34;"></font-awesome-icon>
+              <font-awesome-icon icon="chevron-left" style="color: #f09d34;" />
             </button>
             <p>{{ currQuestionNum }}</p>
             <button class="q-nav-btn" @click="nextQuestion">
-              <font-awesome-icon icon="chevron-right" style="color: #f09d34;"></font-awesome-icon>
+              <font-awesome-icon icon="chevron-right" style="color: #f09d34;" />
             </button>
           </div>   
         </section>
       </div>
 
       <!-- Time section, show how much time left the user has -->
-      <div id="time-left" class="grid-item"></div>
+      <div id="time-left" class="grid-item">
+        <TimeIndicator :doneFunc="timeLimitExceeded"/>
+      </div>
 
       <!-- Summary section, finish button and show how many answered and unaswered question -->
       <div id="summary" class="grid-item">
         <button id="finish-button">
           <h3>Finish</h3>
-          <font-awesome-icon icon="arrow-circle-right" style="color: white;" size="lg"></font-awesome-icon>
+          <font-awesome-icon icon="arrow-circle-right" style="color: white;" size="lg" />
         </button>
       </div>
 
@@ -60,12 +62,15 @@
 </template>
 
 <script>
+import TimeIndicator from '@/components/TimeIndicator.vue'
+
 export default {
   name: "Home",
   data() {
     return {
       examTitle: "TPS - Penalaran Umum",
       currQuestionNum: 1,
+      duration:90*60,
       questions: [
         "Siapa nama kamu?", 
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa."
@@ -134,6 +139,10 @@ export default {
 
         this.currQuestionNum++
       }
+    },
+    timeLimitExceeded: function() {
+      console.log("TLE");
+      
     }
   },
   updated: function() {
@@ -153,6 +162,9 @@ export default {
         button.classList.add('choice-button-clicked')
       }
     })
+  },
+  components: {
+    TimeIndicator
   }
 };
 </script>
