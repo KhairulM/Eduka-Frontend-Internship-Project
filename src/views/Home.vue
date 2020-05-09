@@ -46,15 +46,12 @@
 
       <!-- Time section, show how much time left the user has -->
       <div id="time-left" class="grid-item">
-        <TimeIndicator :doneFunc="timeLimitExceeded"/>
+        <TimeIndicator :tleFunc="timeLimitExceeded"/>
       </div>
 
       <!-- Summary section, finish button and show how many answered and unaswered question -->
       <div id="summary" class="grid-item">
-        <button id="finish-button">
-          <h3>Finish</h3>
-          <font-awesome-icon icon="arrow-circle-right" style="color: white;" size="lg" />
-        </button>
+        <QuestionIndicator :currQuestionNum="currQuestionNum" :nbQuestion="15" :pickedAnswers="pickedAnswers"/>
       </div>
 
     </div>
@@ -63,6 +60,7 @@
 
 <script>
 import TimeIndicator from '@/components/TimeIndicator.vue'
+import QuestionIndicator from '@/components/QuestionIndicator.vue'
 
 export default {
   name: "Home",
@@ -116,7 +114,7 @@ export default {
         // add the class to the button
         button.classList.add('choice-button-clicked')
         this.pickedAnswers[this.currQuestionNum-1] = key
-      }      
+      }
     },
     prevQuestion: function() {
       if (this.currQuestionNum > 1){
@@ -164,12 +162,13 @@ export default {
     })
   },
   components: {
-    TimeIndicator
+    TimeIndicator,
+    QuestionIndicator
   }
 };
 </script>
 
-<style scoped>
+<style>
 button {
   border: none;
   text-align: center;
@@ -195,7 +194,7 @@ button:focus{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(10px, auto);
 }
 
 .grid-item {
@@ -208,7 +207,7 @@ button:focus{
 .q-nav-btn {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
   border-radius: 100%;
-  padding: 10px 12px;
+  padding: 10px 13px;
 }
 
 .font-color-shade{
@@ -240,6 +239,7 @@ button:focus{
 
 .choice-button-clicked {
   background-color: #f09d34;
+  border: 1px solid #f09d34;
   color: white;
 }
 
@@ -255,7 +255,7 @@ button:focus{
 
 #summary {
   grid-column: 4 / 6;
-  grid-row: auto;
+  grid-row: 2;
 }
 
 #q-and-a section {
@@ -290,18 +290,5 @@ button:focus{
   float: right;
 }
 
-#finish-button {
-  background-color: #7766ec;
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-#finish-button h3 {
-  color: white;
-  margin-right: 10px;
-}
 </style>

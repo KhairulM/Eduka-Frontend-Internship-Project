@@ -1,5 +1,5 @@
 <template>
-<div id="container">
+<div id="ti-container">
     <h3>Sisa Waktu</h3>
     <div id="timer-container">
         <div class="unit-indicator">
@@ -17,10 +17,11 @@
 <script>
 export default {
     name: "TimeIndicator",
-    props: ['doneFunc'],
+    props: ['tleFunc'],
     data() {
         return {
-            duration: 90*60
+            duration: 5,
+            timerIntervalId: null
         }
     },
     computed: {
@@ -40,18 +41,22 @@ export default {
         }
     },
     methods: {
-        timer: function() {
-            setInterval(function() {
+        startTimer: function() {
+            this.timerIntervalId = setInterval(function() {
                 if (this.duration > 0) {
                     this.changes = this.duration-1
                 } else {
-                    this.doneFunc();
+                    this.tleFunc();
+                    this.stopTimer();
                 }               
             }.bind(this), 1000)
+        },
+        stopTimer: function() {
+            clearInterval(this.timerIntervalId)
         }
     },
     mounted: function() {
-        this.timer()
+        this.startTimer()
     }
 }
 </script>
@@ -64,11 +69,11 @@ export default {
     align-content: center;
 }
 
-#container {
+#ti-container {
     text-align: center;
 }
 
-#container>h3 {
+#ti-container>h3 {
     color: rgba(0, 0, 0, 0.7);
 }
 
