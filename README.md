@@ -1,4 +1,4 @@
-# eduka-fe-internship-submission
+# Khairul Makirin Submission for Eduka Front-End Internship
 
 ## Project setup
 ```
