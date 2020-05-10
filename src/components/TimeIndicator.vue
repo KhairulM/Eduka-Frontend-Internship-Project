@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       duration: 90 * 60,
-      timerIntervalId: null,
+      timerIntervalId: null
     };
   },
   computed: {
@@ -31,14 +31,14 @@ export default {
       },
       set: function(newDuration) {
         this.duration = newDuration;
-      },
+      }
     },
     minute: function() {
       return Math.floor(this.duration / 60);
     },
     second: function() {
       return this.duration % 60;
-    },
+    }
   },
   methods: {
     startTimer: function() {
@@ -56,11 +56,11 @@ export default {
     },
     stopTimer: function() {
       clearInterval(this.timerIntervalId);
-    },
+    }
   },
   mounted: function() {
     this.startTimer();
-  },
+  }
 };
 </script>
 

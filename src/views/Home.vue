@@ -94,7 +94,7 @@ export default {
   components: {
     TimeIndicator,
     QuestionIndicator,
-    ReviewModal,
+    ReviewModal
   },
   data() {
     return {
@@ -104,7 +104,7 @@ export default {
       questions: [],
       answers: [],
       pickedAnswers: [],
-      changeCount: 0,
+      changeCount: 0
     };
   },
   methods: {
@@ -123,7 +123,7 @@ export default {
         this.pickedAnswers[this.currQuestionNum - 1] = null;
       } else {
         // remove any choice-button-clicked class from other button
-        this.$refs.choice.forEach((el) => {
+        this.$refs.choice.forEach(el => {
           el.children[0].classList.remove("choice-button-clicked");
         });
 
@@ -174,12 +174,12 @@ export default {
     },
     onClickSubmit: function() {
       console.log("ExamSubmitted");
-    },
+    }
   },
   updated: function() {
     this.$nextTick(function() {
       // remove any choice-button-clicked class from all button
-      this.$refs.choice.forEach((el) => {
+      this.$refs.choice.forEach(el => {
         el.children[0].classList.remove("choice-button-clicked");
       });
 
@@ -203,11 +203,11 @@ export default {
     // get question and answers data from json server
     axios
       .get("http://localhost:3000/questions")
-      .then((res) => (this.questions = res.data));
+      .then(res => (this.questions = res.data));
 
     axios
       .get("http://localhost:3000/choices")
-      .then((res) => (this.answers = res.data));
+      .then(res => (this.answers = res.data));
 
     // initialize pickedAnswers to n sized null array
     for (var i = 0; i < this.questions.length; i++) {
@@ -216,7 +216,7 @@ export default {
 
     // propagate changes to components (used for ReviewModal)
     this.changeCount++;
-  },
+  }
 };
 </script>
 

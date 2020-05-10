@@ -48,7 +48,7 @@ export default {
         result.push(unit);
       }
       return result;
-    },
+    }
   },
   mounted: function() {
     // change apperance for answered questions
@@ -60,7 +60,7 @@ export default {
         answer.classList.add("answered");
       }
     });
-  },
+  }
 };
 </script>
 

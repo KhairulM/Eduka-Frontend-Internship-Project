@@ -2,22 +2,18 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { 
-  faChevronLeft, 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  faChevronLeft,
   faChevronRight,
   faArrowCircleRight,
-  faTimes} 
-  from '@fortawesome/free-solid-svg-icons'
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(
-  faChevronLeft, 
-  faChevronRight, 
-  faArrowCircleRight,
-  faTimes)
-  
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+library.add(faChevronLeft, faChevronRight, faArrowCircleRight, faTimes);
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 new Vue({

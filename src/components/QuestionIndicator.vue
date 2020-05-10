@@ -34,14 +34,14 @@ export default {
     "nbQuestion",
     "pickedAnswers",
     "changeQuestion",
-    "onClickFinish",
+    "onClickFinish"
   ],
   computed: {
     answered: function() {
-      return this.pickedAnswers.filter((el) => {
+      return this.pickedAnswers.filter(el => {
         return el != null;
       }).length;
-    },
+    }
   },
   mounted: function() {
     // will be called when attached key prop in parent changes,
@@ -60,7 +60,7 @@ export default {
         el.classList.remove("qi-button-clicked");
       }
     });
-  },
+  }
 };
 </script>
 
