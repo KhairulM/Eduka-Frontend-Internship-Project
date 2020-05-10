@@ -70,7 +70,8 @@
       <ReviewModal 
       :pickedAnswers="pickedAnswers"
       :key="changeCount"
-      :onClickClose="onClickCloseReview"/>
+      :onClickClose="onClickCloseReview"
+      :onClickSubmit="onClickSubmit"/>
     </div>
   </div>
 </template>
@@ -79,6 +80,7 @@
 import TimeIndicator from '@/components/TimeIndicator.vue'
 import QuestionIndicator from '@/components/QuestionIndicator.vue'
 import ReviewModal from '@/components/ReviewModal.vue'
+import axios from 'axios'
 
 export default {
   name: "Home",
@@ -92,48 +94,8 @@ export default {
       examTitle: "TPS - Penalaran Umum",
       currQuestionNum: 1,
       duration:90*60,
-      questions: [
-        "Siapa nama kamu?", 
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
-      ],
-      answers: [
-        [
-          {key: "A", answer: "Si A"},
-          {key: "B", answer: "Si B"},
-          {key: "C", answer: "Si C"},
-          {key: "D", answer: "Si D"},
-          {key: "E", answer: "Si E"},
-        ],
-        [
-          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
-          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ],
-        [
-          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
-          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ],
-        [
-          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
-          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ],
-        [
-          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
-          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ],
-        [
-          {key: "A", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
-          {key: "B", answer: "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
-          {key: "C", answer: "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
-        ],
-      ],
+      questions: [],
+      answers: [],
       pickedAnswers: [],
       changeCount: 0
     }
@@ -234,6 +196,14 @@ export default {
     })
   },
   mounted: function() {
+    // get question and answers data from json server
+    axios.get("http://localhost:3000/questions")
+    .then(res => this.questions = res.data)
+
+    axios.get("http://localhost:3000/choices")
+    .then(res => this.answers = res.data)
+    
+
     // initialize pickedAnswers to n sized null array
     for (var i = 0; i < this.questions.length; i++) {
       this.pickedAnswers[i] = null

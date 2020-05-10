@@ -1,39 +1,54 @@
 {
-    "answer": [
-        1,
-        2,
-        3
+    "choices": [
+        [
+          {"key": "A", "answer": "Si A"},
+          {"key": "B", "answer": "Si B"},
+          {"key": "C", "answer": "Si C"},
+          {"key": "D", "answer": "Si D"},
+          {"key": "E", "answer": "Si E"}
+        ],
+        [
+          {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {"key": "B", "answer": "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+          {"key": "C", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."},
+          {"key": "D", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."}
+        ],
+        [
+            {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+            {"key": "B", "answer": "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+            {"key": "C", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."}
+        ],
+        [
+            {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+            {"key": "B", "answer": "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+            {"key": "C", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."}
+        ],
+        [
+            {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+            {"key": "B", "answer": "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+            {"key": "C", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."}
+        ],
+        [
+            {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+            {"key": "B", "answer": "Ut tristique enim sem, a gravida lacus faucibus faucibus. "},
+            {"key": "C", "answer": "Maecenas dapibus tellus nunc, eu congue elit faucibus luctus."}
+        ]
     ],
-    "exam": [
-        {
-            "question": "Siapa nama bapak kamu?",
-            "choices": [
-                "Tidak tahu",
-                "Si A",
-                "Si B",
-                "Si C",
-                "None of the above"
-            ]
-        },
-        {
-            "question": "Siapa nama ibu kamu?",
-            "choices": [
-                "Tidak tahu",
-                "Si A",
-                "Si B",
-                "Si C",
-                "None of the above"
-            ]
-        },
-        {
-            "question": "Kamu siapa?",
-            "choices": [
-                "Tidak tahu",
-                "Si A",
-                "Si B",
-                "Si C",
-                "None of the above"
-            ]
-        }
+    "questions": [
+        "Siapa nama ibu kamu?", 
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa."
+    ],
+    "answers": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A"
     ]
+
 }

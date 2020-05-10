@@ -3,6 +3,7 @@
 ## Project setup
 ```
 npm install
+npx json-server --watch db.json ## if npx is installed, else install it globally npm i json-server -g
 ```
 
 ### Compiles and hot-reloads for development
