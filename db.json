@@ -1,11 +1,11 @@
 {
     "choices": [
         [
-          {"key": "A", "answer": "Si A"},
-          {"key": "B", "answer": "Si B"},
-          {"key": "C", "answer": "Si C"},
-          {"key": "D", "answer": "Si D"},
-          {"key": "E", "answer": "Si E"}
+          {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {"key": "B", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {"key": "C", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {"key": "D", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+          {"key": "E", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
         ],
         [
           {"key": "A", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
@@ -35,7 +35,7 @@
         ]
     ],
     "questions": [
-        "Siapa nama ibu kamu?", 
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at sodales ipsum. In bibendum ultrices nibh dapibus commodo. Morbi in gravida neque. Aenean ultricies dolor a ligula ullamcorper commodo. Nam vel interdum dolor. Phasellus iaculis, eros sit amet consectetur tincidunt, quam ex volutpat turpis, et fringilla nulla risus condimentum felis. Nunc et facilisis magna, sed ultrices mi. Proin porta maximus arcu, sit amet fringilla leo suscipit a. Aenean et nulla ultricies, dictum risus vel, rhoncus enim. Vivamus venenatis leo mi, et accumsan est fringilla eu. Pellentesque gravida fermentum purus. In a nisl vel diam aliquam tincidunt a eget nibh. Ut fermentum semper convallis. Sed tristique mi eget magna vehicula hendrerit. Pellentesque consequat risus sit amet quam eleifend, feugiat interdum lacus aliquet. Ut volutpat magna cursus, facilisis felis in, rutrum lacus. Aliquam ultrices feugiat neque, ut viverra sem pharetra eget. Duis in nibh nibh. Proin ornare eros eros, id hendrerit diam interdum vel. Aliquam congue ipsum in diam dapibus, ut sagittis mi pharetra. Nunc aliquam erat consequat augue congue, at sagittis purus maximus. In at velit a mauris venenatis pellentesque eu molestie sem. Nam varius velit neque. Sed ipsum enim, fringilla vitae vestibulum at, auctor eget ligula. Vestibulum fringilla risus ante, sit amet tristique risus pharetra eget. In ut mauris sapien.", 
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique enim sem, a gravida lacus faucibus faucibus. Maecenas dapibus tellus nunc, eu congue elit faucibus luctus. Ut purus augue, convallis eget odio ac, venenatis finibus sapien. Vestibulum cursus mauris pellentesque tempus convallis. Morbi iaculis odio sit amet risus porta, quis congue mauris scelerisque. Pellentesque at elit efficitur, iaculis velit eu, faucibus magna. Nunc pulvinar arcu at euismod tincidunt. Suspendisse interdum blandit massa, ut efficitur sapien tristique vel. Ut vitae ultrices massa.",
